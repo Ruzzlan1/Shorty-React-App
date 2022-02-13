@@ -1,0 +1,165 @@
+@use '../abstracts/mixins' as *;
+
+@include mq(lg) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        gap: 1em;
+        margin: 0 auto;
+
+        &-ds {
+            max-width: 90%;
+        }
+    }
+
+    .col-1 {
+        place-self: center;
+    }
+
+    .col-2 {
+        margin-right: 10rem;
+    }
+
+    .col-grid {
+        display: grid;
+        grid-template-columns: 25rem 25rem 25rem;
+    }
+    .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        // place-items: center;
+        gap: 2rem;
+    }
+
+    .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        margin: 0 auto;
+    }
+
+    .grid-5 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 0 auto;
+        place-items: center;
+    }
+    .flex-lg {
+        display: flex;
+        justify-content: space-between;
+    }
+    .d-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@include mq(md) {
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 30px;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .grid-m {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 30px;
+        margin: 0 auto;
+    }
+
+    .flex-md {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.col-md {
+    padding: 0 1rem;
+}
+
+.col-end {
+    align-self: flex-end;
+}
+
+// For tablet screen
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+    .grid-lg {
+        display: grid;
+        grid-gap: 6rem;
+    }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+    .grid-md {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-auto-flow: row;
+        grid-gap: 1em;
+        margin: 0 auto;
+        max-width: 80%;
+    }
+    .reservation-btn {
+        grid-column: 1/2;
+    }
+
+    .col-grid {
+        grid-template-columns: none;
+    }
+    .visible-sm {
+        display: block !important;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .grid-sm {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+
+.visible-sm {
+    display: none;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .hidden-sm {
+        display: none;
+    }
+}
+@media (min-width: 768px) and (max-width: 1000px) {
+    .grid-m-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 200px);
+    }
+}
+.reach {
+    grid-column: 3/4;
+}
+
+@media (max-width: 768px) {
+    .flex-xs {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.grid-m-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 20px;
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+    .grid-xs {
+        max-width: 70%;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,31 @@
+@use '../abstracts/mixins' as *;
+@use '../base/root' as *;
+
+.btn {
+  display: block;
+  border-radius: 0;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  touch-action: manipulation;
+  font-weight: 700;
+  text-align: center;
+  &:hover,
+  &:focus {
+    color: #333;
+    text-decoration: none;
+  }
+
+  &-primary {
+    background-color: var(--color-gold);
+    width: 100%;
+    display: block;
+    color: #333;
+    &:hover,
+    &:focus {
+      background-color: var(--dark-gold);
+      border-color: var(--dark-gold);
+    }
+  }
+}
