@@ -1,3 +1,4 @@
+import React from 'react'
 import Navbar from './components/Navbar'
 import Intro from './components/Intro'
 import Shortener from './components/Shortener'
@@ -8,7 +9,7 @@ import './module.scss'
 
 function App() {
   return (
-    <div className="container">
+    <div className="hero">
       <Navbar />
       <Intro />
       <Shortener />
