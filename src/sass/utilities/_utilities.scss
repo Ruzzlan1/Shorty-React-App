@@ -6,7 +6,7 @@
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-
+  // background-color: coral;
   @include mq(md) {
     width: 85%;
   }
@@ -47,7 +47,9 @@ section {
 .pt-5 {
   padding-top: 4rem;
 }
-
+.bg-white {
+  background-color: var(--white);
+}
 .center-block {
   display: block;
   margin-right: auto;

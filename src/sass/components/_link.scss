@@ -1,0 +1,13 @@
+.link-container {
+  background-color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  .short-link {
+    color: var(--blue-primary);
+    text-decoration: none;
+  }
+}

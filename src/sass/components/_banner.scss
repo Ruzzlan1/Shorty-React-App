@@ -1,0 +1,13 @@
+.banner-container {
+  background: var(--dark--primary) url(../../images/bg-boost-mobile.svg)
+    no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 6rem 3rem;
+  text-align: center;
+  margin-top: 5rem;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+}

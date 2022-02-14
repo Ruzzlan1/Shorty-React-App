@@ -1,17 +1,16 @@
 @use '../base/root' as *;
 @use '../abstracts/mixins' as *;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  // font-family: 'Raleway', sans-serif;
-  // font-weight: 800;
-  // color: var(--gray);
+.header-primary {
+  color: var(--ntr-dark-blue);
 }
-
+.header-secondary {
+  color: var(--white);
+}
+.text-primary {
+  color: var(--ntr-dark-violet);
+  font-weight: 300;
+}
 h3 {
   // font-size: 24px;
 }

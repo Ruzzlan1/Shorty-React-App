@@ -1,2 +1,52 @@
 @use '../abstracts/mixins' as *;
 @use '../base/root' as *;
+
+.footer {
+  // outline: 5px solid darkcyan;
+  background-color: var(--ntr-dark-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &-header {
+    font-size: 1.65rem;
+    padding-block: 1rem;
+  }
+
+  &-nav {
+    text-align: center;
+    padding: 1rem;
+    list-style: none;
+    &__header {
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    &__item + &__item {
+      padding-top: 1rem;
+    }
+    &__link {
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 300;
+    }
+  }
+}
+// styling social icons
+.social-icons {
+  display: flex;
+  // justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+
+  &__link + &__link {
+    padding-left: 1rem;
+  }
+  &__link {
+    img:hover {
+      filter: brightness(0.5) sepia(1) hue-rotate(140deg) saturate(6);
+    }
+  }
+}

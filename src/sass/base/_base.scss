@@ -2,10 +2,11 @@
 @use '../abstracts/mixins' as *;
 
 body {
-  font-size: var(--def-font-size);
+  font-size: var(--def-fs);
+  font-family: var(--def-ff);
   @include mq(lg) {
     & {
-      font-size: 1.2rem;
+      font-size: calc(var(--def-fs) + 0.5rem);
     }
   }
 }
@@ -19,4 +20,7 @@ html {
       scroll-behavior: auto;
     }
   }
+}
+.hero {
+  background-color: var(--light);
 }

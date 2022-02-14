@@ -1,0 +1,24 @@
+.shortener {
+  padding: 1.5rem 2rem;
+  background: var(--ntr-dark-blue) url(../../images/bg-shorten-mobile.svg)
+    no-repeat;
+  background-size: cover;
+  display: grid;
+  grid-gap: 20px;
+  border-radius: 9px;
+  margin-top: 3rem;
+  &-input {
+    padding: 0.75em 1em;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    text-indent: 20px;
+    width: 100%;
+    &::-moz-placeholder {
+      /* Firefox 19+ */
+      color: var(--ntr-dark-blue);
+      opacity: 1;
+      font-size: 1rem;
+    }
+  }
+}
