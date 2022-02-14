@@ -4,11 +4,10 @@ import Shortener from './components/Shortener'
 import About from './components/About'
 import Banner from './components/Banner'
 import Footer from './components/Footer'
-import './style.scss'
+import './module.scss'
 
 function App() {
   return (
-    // <div className="App">
     <div className="container">
       <Navbar />
       <Intro />
@@ -17,7 +16,6 @@ function App() {
       <Banner />
       <Footer />
     </div>
-    // </div>
   )
 }
 
