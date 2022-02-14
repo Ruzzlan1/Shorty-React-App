@@ -1,12 +1,17 @@
+// import standart styles
 @use 'sass/base/base';
-// @use 'sass/base/typography';
+@use 'sass/base/typography';
 @use 'sass/base/reset';
 
-// @use 'sass/components/buttons';
-
-// @use 'sass/layout/about';
-// @use 'sass/layout/navbar';
-// @use 'sass/layout/footer';
-
-// @use 'sass/utilities/utilities';
-// @use 'sass/abstracts/grid';
+// import components
+@use 'sass/components/buttons';
+@use 'sass/components/link';
+@use 'sass/components/banner';
+// input layouts
+@use 'sass/layout/navbar';
+@use 'sass/layout/intro';
+@use 'sass/layout/shortener';
+@use 'sass/layout/about';
+@use 'sass/layout/footer';
+//import utility classes
+@use 'sass/utilities/utilities';
