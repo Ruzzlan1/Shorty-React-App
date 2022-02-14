@@ -1,0 +1,37 @@
+.s {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-gap: 30px;
+  margin-block: 30px;
+  background-color: var(--white);
+  padding: 3rem 1rem;
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
+  &-header {
+    font-size: 1.5rem;
+  }
+  &-article {
+    color: var(--ntr-dark-blue);
+    font-weight: 300;
+  }
+  &-image {
+    background-color: var(--ntr-dark-blue);
+    padding: 1rem;
+    border-radius: 100px;
+    z-index: 2;
+    position: relative;
+    top: 60px;
+  }
+}

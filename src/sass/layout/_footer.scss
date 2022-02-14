@@ -2,7 +2,6 @@
 @use '../base/root' as *;
 
 .footer {
-  // outline: 5px solid darkcyan;
   background-color: var(--ntr-dark-blue);
   display: flex;
   flex-direction: column;
@@ -32,12 +31,14 @@
       color: var(--white);
       font-weight: 300;
     }
+    &__link:hover {
+      color: var(--blue-primary);
+    }
   }
 }
 // styling social icons
 .social-icons {
   display: flex;
-  // justify-content: space-around;
   align-items: center;
   padding: 1rem;
 
