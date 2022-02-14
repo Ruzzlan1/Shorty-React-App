@@ -1,12 +1,13 @@
-function Card() {
+import cardImg from '../images/icon-brand-recognition.svg'
+
+function Card(props) {
   return (
-    <div className="about-card">
-      <img src="" alt="" />
-      <h4 className="header-primary">Brand Recognition</h4>
-      <p>
-        Boost your brand recognition with each click. Generic links don’t mean a
-        thing. Branded links help instil confidence in your content.
-      </p>
+    <div className="s">
+      <img src={cardImg} alt="Card image" className="card-image" />
+      <div className="card">
+        <h4 className="header-primary card-header">{props.item.title}</h4>
+        <p className="card-article">{props.item.description}</p>
+      </div>
     </div>
   )
 }
