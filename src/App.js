@@ -4,7 +4,7 @@ import Shortener from './components/Shortener'
 import About from './components/About'
 import Banner from './components/Banner'
 import Footer from './components/Footer'
-// import './style.scss'
+import './style.scss'
 
 function App() {
   return (
