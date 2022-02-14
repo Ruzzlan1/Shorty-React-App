@@ -6,7 +6,7 @@ import SocialIcons from './SocialIcons'
 function Footer() {
   return (
     <footer className="footer">
-      <h4>Shortly</h4>
+      <h4 className="header-secondary footer-header">Shortly</h4>
       <FooterNav />
       <SocialIcons />
     </footer>
