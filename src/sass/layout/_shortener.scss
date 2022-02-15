@@ -1,3 +1,6 @@
+@use '../base/root' as *;
+@use '../abstracts/mixins' as *;
+
 .shortener {
   padding: 1.5rem 2rem;
   background: var(--ntr-dark-blue) url(../../images/bg-shorten-mobile.svg)
@@ -7,12 +10,29 @@
   grid-gap: 20px;
   border-radius: 9px;
   margin-top: 3rem;
+  // place-items: center;
+  @include mq(md) {
+    padding: 2rem;
+  }
+  @include mq(lg) {
+    grid-template-columns: 2fr 200px;
+    place-items: center;
+    background: var(--ntr-dark-blue) url(../../images/bg-shorten-desktop.svg)
+      no-repeat;
+    background-size: cover;
+  }
+  @include mq(laptop) {
+    padding: 3rem 2rem;
+  }
   &-input {
     padding: 0.75em 1em;
     outline: none;
     border: none;
     border-radius: 5px;
     width: 100%;
+    place-self: center;
+    @include mq(laptop) {
+    }
     &::-moz-placeholder {
       /* Firefox 19+ */
       color: var(--ntr-dark-blue);

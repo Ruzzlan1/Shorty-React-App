@@ -2,7 +2,7 @@
 @use 'sass/base/base';
 @use 'sass/base/typography';
 @use 'sass/base/reset';
-
+@use 'sass/abstracts/grid';
 // import components
 @use 'sass/components/buttons';
 @use 'sass/components/link';

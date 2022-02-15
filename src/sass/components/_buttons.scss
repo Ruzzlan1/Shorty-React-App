@@ -31,9 +31,13 @@ $primary-blue: hsl(180, 66%, 49%);
   &-shortener {
     max-width: 100%;
     border-radius: 5px;
+    @include mq(md) {
+      // place-self: center;
+    }
   }
   &-link {
     padding: 10px 1rem;
     border-radius: 3px;
+    margin-left: 2rem;
   }
 }

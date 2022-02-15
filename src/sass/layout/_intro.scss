@@ -1,27 +1,57 @@
+@use '../base/root' as *;
+@use '../abstracts/mixins' as *;
 .intro {
-  // background-color: aliceblue;
-  display: flex;
-  align-items: center;
+  display: grid;
   flex-direction: column;
   justify-content: center;
+
+  @include mq(laptop) {
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
   &-img {
-    background-position: top;
+    @include mq(laptop) {
+      grid-column: 2 / 3;
+    }
   }
 
   &-article {
+    margin-top: 3rem;
     padding: 1rem;
     text-align: center;
+    place-self: center;
 
+    @include mq(laptop) {
+      grid-row: 1;
+      margin-top: 0;
+      margin-right: auto;
+      padding: 0;
+      text-align: left;
+    }
     &__header {
       font-size: 2.25rem;
       line-height: 1.2;
       letter-spacing: -1px;
+      @include mq(md) {
+        font-size: 2.75rem;
+      }
+      @include mq(laptop) {
+        max-width: 15ch;
+        font-size: 4rem;
+      }
     }
     &__text {
       margin-top: 1rem;
       margin-bottom: 1.5rem;
       line-height: 1.7;
-      // padding-block: 1rem;
+      @media screen and (min-width: 768px) and (max-width: 1100px) {
+        font-size: 1.25rem;
+        max-width: 35ch;
+        margin-inline: auto;
+      }
+      @include mq(laptop) {
+        max-width: 40ch;
+      }
     }
   }
 }

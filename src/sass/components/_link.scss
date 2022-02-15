@@ -1,3 +1,6 @@
+@use '../base/root' as *;
+@use '../abstracts/mixins' as *;
+
 .link-container {
   background-color: var(--white);
   display: flex;
@@ -9,8 +12,26 @@
   .short-link {
     color: var(--blue-primary);
     text-decoration: none;
+    @include mq(md) {
+      margin-left: auto;
+    }
   }
   .short-link:hover {
     color: var(--ntr-dark-violet);
+  }
+  .full-link {
+    display: none;
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 500;
+
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+
+    @include mq(md) {
+      display: block;
+    }
   }
 }

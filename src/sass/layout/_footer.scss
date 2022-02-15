@@ -3,20 +3,28 @@
 
 .footer {
   background-color: var(--ntr-dark-blue);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  place-items: center;
   justify-content: center;
-
+  padding-top: 1rem;
+  @include mq(lg) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
   &-header {
     font-size: 1.65rem;
     padding-block: 1rem;
+    @include mq(laptop) {
+    }
   }
 
   &-nav {
     text-align: center;
     padding: 1rem;
     list-style: none;
+    @include mq(lg) {
+      text-align: left;
+      padding: 0;
+    }
     &__header {
       color: var(--white);
       font-weight: 700;
@@ -24,7 +32,7 @@
     }
 
     &__item + &__item {
-      padding-top: 1rem;
+      padding-top: 15px;
     }
     &__link {
       text-decoration: none;
