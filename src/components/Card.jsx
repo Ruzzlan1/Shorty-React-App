@@ -2,7 +2,7 @@ import cardImg from '../images/icon-brand-recognition.svg'
 
 function Card(props) {
   return (
-    <div className="s">
+    <div className="card-wrapper">
       <img src={cardImg} alt="Card image" className="card-image" />
       <div className="card">
         <h4 className="header-primary card-header">{props.item.title}</h4>

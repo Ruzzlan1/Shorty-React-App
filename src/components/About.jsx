@@ -15,7 +15,7 @@ function About() {
           Track how your links are performing across the web with our advanced
           statistics dashboard
         </p>
-        {cards}
+        <div className="card-container">{cards}</div>
       </section>
     </div>
   )

@@ -3,14 +3,14 @@
 import React from 'react'
 
 function Link() {
-  const [isMobile, setIsMobile] = React.useState(false)
+  // const [isMobile, setIsMobile] = React.useState(false)
   return (
     <div className="link-container">
-      {isMobile && (
-        <a href="#" className="full-link">
-          https://scrimba.com/learn/learnreact/
-        </a>
-      )}
+      {/* {isMobile && ( */}
+      <a href="#" className="full-link">
+        https://scrimba.com/learn/learnreact/
+      </a>
+      {/* )} */}
       <a href="#" className="short-link">
         shorturl.at/xCMV1
       </a>

@@ -4,7 +4,7 @@ import React from 'react'
 import navbarLogo from '../images/logo.svg'
 
 function Navbar() {
-  const [navOpen, setNavOpen] = React.useState(false)
+  // const [navOpen, setNavOpen] = React.useState(false)
   return (
     <div className="bg-white">
       <div className="container ">
@@ -12,37 +12,36 @@ function Navbar() {
           <div className="nav-logo">
             <img src={navbarLogo} alt="Navbar Logo" />
           </div>
-          {navOpen && (
-            <div className="nav-wrapper">
-              <ul className="nav-list nav-list__primary">
-                <li className="nav-item">
-                  <a href="#" className="nav-link">
-                    Features
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="#" className="nav-link">
-                    Pricing
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="#" className="nav-link">
-                    Resources
-                  </a>
-                </li>
-              </ul>
-              <ul className="nav-list nav-list__secondary">
-                <li className="nav-item">
-                  <a href="#" className="nav-link">
-                    Login
-                  </a>
-                </li>
-                <a href="#" className="button button-primary nav-list__button">
-                  Sign Up
-                </a>
-              </ul>
-            </div>
-          )}
+          {/* {navOpen && ( */}
+          <ul className="nav-list nav-list__primary">
+            <li className="nav-item">
+              <a href="#" className="nav-link">
+                Features
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="#" className="nav-link">
+                Pricing
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="#" className="nav-link">
+                Resources
+              </a>
+            </li>
+          </ul>
+          <ul className="nav-list nav-list__secondary">
+            <li className="nav-item">
+              <a href="#" className="nav-link">
+                Login
+              </a>
+            </li>
+            <button className="btn btn-primary nav-list__button">
+              <a href="#" type="button" className="text-white">
+                Sign Up
+              </a>
+            </button>
+          </ul>
         </nav>
       </div>
     </div>
