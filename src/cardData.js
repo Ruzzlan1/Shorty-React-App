@@ -17,7 +17,7 @@ export const cardData = [
     id: 3,
     title: 'Fully Customizable',
     description:
-      ' Improve brand awareness and content discoverability through customizable',
+      'Improve brand awareness and content discoverability through customizable links, supercharging audience engagement.',
     cardImg: 'icon-fully-customizable.svg',
   },
 ]
