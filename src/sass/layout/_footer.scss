@@ -1,14 +1,18 @@
 @use '../abstracts/mixins' as *;
 @use '../base/root' as *;
 
+.footer-container {
+  background-color: var(--ntr-dark-violet);
+}
 .footer {
-  background-color: var(--ntr-dark-blue);
   display: grid;
   place-items: center;
   justify-content: center;
   padding-top: 1rem;
   @include mq(lg) {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding-block: 2rem;
+    place-items: unset;
   }
   &-header {
     font-size: 1.65rem;
@@ -50,6 +54,9 @@
   align-items: center;
   padding: 1rem;
 
+  @include mq(lg) {
+    align-items: unset;
+  }
   &__link + &__link {
     padding-left: 1rem;
   }

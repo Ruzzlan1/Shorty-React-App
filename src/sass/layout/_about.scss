@@ -10,8 +10,11 @@
     @include mq(md) {
       font-size: 2rem;
     }
+    @include mq(lg) {
+    }
     @include mq(laptop) {
       font-size: 2.25rem;
+      margin-top: 7rem;
     }
   }
   &-article {
@@ -20,5 +23,9 @@
     font-weight: 500;
     max-width: 45ch;
     margin-inline: auto;
+
+    @include mq(lg) {
+      margin-bottom: 3rem;
+    }
   }
 }
