@@ -48,7 +48,6 @@ export const footerData = [
       one: 'About',
       two: 'Our Team',
       three: 'Careers',
-      four: 'Contact',
     },
   },
 ]
