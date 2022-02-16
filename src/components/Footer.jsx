@@ -4,18 +4,19 @@ import FooterNav from './FooterNav'
 import SocialIcons from './SocialIcons'
 import { footerData } from '../cardData'
 function Footer() {
-  const footerNav = footerData.map((item, index) => {
+  const footerNav = footerData.map(item => {
     return (
       <FooterNav key={item.id} title={item.title} category={item.categories} />
     )
   })
 
   return (
-    <footer className="footer">
-      <h4 className="header-secondary footer-header">Shortly</h4>
-      {footerNav}
-      {/* <FooterNav /> */}
-      <SocialIcons />
+    <footer className="footer-container">
+      <div className="container footer">
+        <h4 className="header-secondary footer-header">Shortly</h4>
+        {footerNav}
+        <SocialIcons />
+      </div>
     </footer>
   )
 }

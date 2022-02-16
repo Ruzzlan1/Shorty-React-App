@@ -4,7 +4,6 @@ import { cardData } from '../cardData'
 
 function About() {
   const cards = cardData.map(data => {
-    console.log(data)
     return <Card key={data.id} item={data} />
   })
   return (
