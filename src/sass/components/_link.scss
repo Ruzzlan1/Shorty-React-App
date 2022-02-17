@@ -3,10 +3,9 @@
 
 .link-container {
   background-color: var(--white);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
   padding: 1rem;
+  place-items: center;
   margin-top: 1rem;
   border-radius: 6px;
   .short-link {
