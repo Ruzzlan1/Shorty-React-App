@@ -9,17 +9,18 @@ function Shortener(props) {
       'https://bitchesgirls.com/youtube/Valkyrae/valkyrae-youtube-nudes-feb-3-2022/',
     shortLink: '',
   })
-  // create component
 
+  // create component
   const link = components.map(item => {
     return (
       <Link
-        key={url.fullLink}
-        fullLink={url.fullLink}
-        shortLink={url.shortLink}
+        key={item.fullLink}
+        fullLink={item.fullLink}
+        shortLink={item.shortLink}
       />
     )
   })
+  // renderError function {}
 
   // useEffect for side effects and get data from API
   React.useEffect(() => {
@@ -30,7 +31,9 @@ function Shortener(props) {
         )
         if (res.status === 400) {
           throw new Error('no input entered')
+          // renderError
         }
+
         const data = await res.json()
         const { result } = data
         setUrl(prevUrl => {
@@ -48,7 +51,20 @@ function Shortener(props) {
 
   // adding event listener for get url
   function getShortUrl() {
-    setComponent(prevArr => [...prevArr, link])
+    setComponent([
+      ...components,
+      {
+        key: Math.random() * 1000,
+        fullLink: url.fullLink,
+        shortLink: url.shortLink,
+      },
+    ])
+    setUrl(prevUrl => {
+      return {
+        ...prevUrl,
+        fullLink: '',
+      }
+    })
     console.log('Short link getted')
   }
 
