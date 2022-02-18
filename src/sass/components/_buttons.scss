@@ -4,7 +4,6 @@
 $primary-blue: hsl(180, 66%, 49%);
 
 .btn {
-  border-radius: 0;
   border: none;
   text-transform: capitalize;
   cursor: pointer;
@@ -37,8 +36,13 @@ $primary-blue: hsl(180, 66%, 49%);
   }
   &-link {
     padding: 10px 1rem;
-    border-radius: 3px;
-    // margin-left: 2rem;
-    // max-width: 100%;
+    border-radius: 6px;
+    max-width: 100%;
+    margin-top: 1rem;
+    @include mq(lg) {
+      // margin: 0 0 0 2rem;
+      margin-left: 2rem;
+      margin-top: 0;
+    }
   }
 }

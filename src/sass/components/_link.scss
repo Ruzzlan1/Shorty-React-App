@@ -1,36 +1,59 @@
 @use '../base/root' as *;
 @use '../abstracts/mixins' as *;
 
+// Sass variable
+$gray: #ecece477;
+
 .link-container {
   background-color: var(--white);
-  display: grid;
-  padding: 1rem;
-  place-items: center;
+  display: flex;
+  padding: 1rem 10px;
+  flex-direction: column;
   margin-top: 1rem;
   border-radius: 6px;
+
+  @include mq(lg) {
+    flex-direction: row;
+    align-items: center;
+  }
   .short-link {
     color: var(--blue-primary);
     text-decoration: none;
-    @include mq(md) {
+    @include mq(lg) {
       margin-left: auto;
+    }
+    @include until(phone) {
+      margin-top: 1rem;
     }
   }
   .short-link:hover {
     color: var(--ntr-dark-violet);
   }
+
   .full-link {
-    display: none;
     text-decoration: none;
     color: var(--black);
     font-weight: 500;
 
+    @include until(phone) {
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: '...';
+
+      &::after {
+        content: '';
+        border: 1px solid $gray;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateY(-115px);
+      }
+    }
+
     &:hover,
     &:focus {
       opacity: 0.7;
-    }
-
-    @include mq(md) {
-      display: block;
     }
   }
 }
