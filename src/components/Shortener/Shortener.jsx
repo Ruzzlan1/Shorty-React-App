@@ -1,25 +1,26 @@
 import React from 'react'
-import Link from '../components/Link'
+import Link from './Link'
 
 function Shortener(props) {
   // Set React States
   const [components, setComponent] = React.useState([])
+  const [errors, setErrors] = React.useState('')
   const [url, setUrl] = React.useState({
     fullLink:
-      'https://bitchesgirls.com/youtube/Valkyrae/valkyrae-youtube-nudes-feb-3-2022/',
+      'https://developers.google.com/web/updates/2016/10/addeventlistener-once',
     shortLink: '',
   })
-
   // create component
-  const link = components.map(item => {
+  const link = components.map((item, index) => {
     return (
       <Link
-        key={item.fullLink}
+        key={item.index}
         fullLink={item.fullLink}
         shortLink={item.shortLink}
       />
     )
   })
+  console.log(link)
   // renderError function {}
 
   // useEffect for side effects and get data from API
@@ -31,7 +32,6 @@ function Shortener(props) {
         )
         if (res.status === 400) {
           throw new Error('no input entered')
-          // renderError
         }
 
         const data = await res.json()
@@ -44,6 +44,7 @@ function Shortener(props) {
         })
       } catch (error) {
         console.error(error)
+        setErrors(error.message)
       }
     }
     getUrl()
@@ -62,7 +63,7 @@ function Shortener(props) {
     setUrl(prevUrl => {
       return {
         ...prevUrl,
-        fullLink: '',
+        fullLink: '/',
       }
     })
     console.log('Short link getted')
@@ -95,7 +96,12 @@ function Shortener(props) {
           Shorten it
         </button>
       </div>
-      {link}
+      {!errors && link[link.length - 1]}
+      {errors && (
+        <div>
+          <p className="text-red">{errors}</p>
+        </div>
+      )}
     </div>
   )
 }

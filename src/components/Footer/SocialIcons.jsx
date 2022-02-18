@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
-import fbIcon from '../images/icon-facebook.svg'
-import twIcon from '../images/icon-twitter.svg'
-import pintIcon from '../images/icon-pinterest.svg'
-import instaIcon from '../images/icon-instagram.svg'
+import fbIcon from '../../images/icon-facebook.svg'
+import twIcon from '../../images/icon-twitter.svg'
+import pintIcon from '../../images/icon-pinterest.svg'
+import instaIcon from '../../images/icon-instagram.svg'
 
 function SocialIcons() {
   return (

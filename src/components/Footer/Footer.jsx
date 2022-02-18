@@ -2,7 +2,7 @@
 import React from 'react'
 import FooterNav from './FooterNav'
 import SocialIcons from './SocialIcons'
-import { footerData } from '../cardData'
+import { footerData } from '../../cardData'
 function Footer() {
   const footerNav = footerData.map(item => {
     return (

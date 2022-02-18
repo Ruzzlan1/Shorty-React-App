@@ -1,4 +1,4 @@
-import cardImg from '../images/icon-brand-recognition.svg'
+import cardImg from '../../images/icon-brand-recognition.svg'
 
 function Card(props) {
   return (
