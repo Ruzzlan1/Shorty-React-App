@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react'
 
 function Link(props) {
@@ -8,10 +6,10 @@ function Link(props) {
   return (
     <div className="link">
       <div className="link-container">
-        <a href="#" className="full-link">
+        <a href={props.fullLink} className="full-link">
           {props.fullLink}
         </a>
-        <a href="#" className="short-link">
+        <a href={props.shortLink} className="short-link">
           {props.shortLink}
         </a>
         <button className="btn btn-primary btn-link">Copy</button>
