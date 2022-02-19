@@ -14,14 +14,12 @@ function Shortener(props) {
   const link = components.map((item, index) => {
     return (
       <Link
-        key={item.index}
+        key={item.key}
         fullLink={item.fullLink}
         shortLink={item.shortLink}
       />
     )
   })
-  console.log(link)
-  // renderError function {}
 
   // useEffect for side effects and get data from API
   React.useEffect(() => {
@@ -36,6 +34,8 @@ function Shortener(props) {
 
         const data = await res.json()
         const { result } = data
+
+        // debugger
         setUrl(prevUrl => {
           return {
             ...prevUrl,
@@ -44,7 +44,6 @@ function Shortener(props) {
         })
       } catch (error) {
         console.error(error)
-        setErrors(error.message)
       }
     }
     getUrl()
@@ -52,18 +51,27 @@ function Shortener(props) {
 
   // adding event listener for get url
   function getShortUrl() {
+    if (url.fullLink === '') {
+      setErrors('No input inserted')
+      return
+    }
+    if (url.shortLink === '') {
+      setErrors('Invalid link inserted')
+      return
+    }
+    console.log('Valid link inserted')
     setComponent([
       ...components,
       {
         key: Math.random() * 1000,
-        fullLink: url.fullLink,
-        shortLink: url.shortLink,
+        ...url,
       },
     ])
     setUrl(prevUrl => {
       return {
         ...prevUrl,
-        fullLink: '/',
+        fullLink: '',
+        shortLink: '',
       }
     })
     console.log('Short link getted')
@@ -72,7 +80,6 @@ function Shortener(props) {
   // for input changes
   function handleChange(event) {
     const { name, value } = event.target
-
     setUrl(prevUrl => {
       return {
         ...prevUrl,
@@ -91,17 +98,14 @@ function Shortener(props) {
           name="fullLink"
           value={url.fullLink}
           onChange={handleChange}
+          required={url.requried}
         />
         <button className="btn btn-primary btn-shortener" onClick={getShortUrl}>
           Shorten it
         </button>
+        {errors && <span className="error-message text-red">{errors}</span>}
       </div>
-      {!errors && link[link.length - 1]}
-      {errors && (
-        <div>
-          <p className="text-red">{errors}</p>
-        </div>
-      )}
+      {link}
     </div>
   )
 }
