@@ -2,30 +2,44 @@
 @use '../abstracts/mixins' as *;
 
 // Sass variable
-$gray: #ecece477;
+$gray: #ecece457;
 
 .link-container {
   background-color: var(--white);
   display: flex;
-  padding: 1rem 10px;
+  padding: 1rem;
   flex-direction: column;
   margin-top: 1rem;
   border-radius: 6px;
-
+  position: relative;
   @include mq(lg) {
     flex-direction: row;
     align-items: center;
   }
+
   .short-link {
     color: var(--blue-primary);
     text-decoration: none;
+    position: relative;
     @include mq(lg) {
       margin-left: auto;
     }
+
     @include until(phone) {
       margin-top: 1rem;
+
+      &::before {
+        content: '';
+        border-bottom: 2.5px solid rgba(128, 128, 128, 0.15);
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translateY(-8px);
+      }
     }
   }
+
   .short-link:hover {
     color: var(--ntr-dark-violet);
   }
@@ -34,21 +48,10 @@ $gray: #ecece477;
     text-decoration: none;
     color: var(--black);
     font-weight: 500;
-
     @include until(phone) {
       white-space: nowrap;
       overflow-x: hidden;
       text-overflow: '...';
-
-      &::after {
-        content: '';
-        border: 1px solid $gray;
-        width: 100%;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        transform: translateY(-115px);
-      }
     }
 
     &:hover,
