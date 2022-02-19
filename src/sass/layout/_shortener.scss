@@ -2,7 +2,7 @@
 @use '../abstracts/mixins' as *;
 
 .shortener {
-  padding: 1.5rem 2rem;
+  padding: min(1.5rem, 2.25rem);
   background: var(--ntr-dark-blue) url(../../images/bg-shorten-mobile.svg)
     no-repeat;
   background-size: cover;
@@ -10,9 +10,7 @@
   grid-gap: 20px;
   border-radius: 9px;
   margin-top: 3rem;
-  @include mq(md) {
-    padding: 2rem;
-  }
+
   @include mq(lg) {
     grid-template-columns: 2fr 200px;
     place-items: center;
@@ -38,5 +36,8 @@
       opacity: 1;
       font-size: 1rem;
     }
+  }
+  .error-message {
+    place-self: start;
   }
 }

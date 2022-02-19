@@ -7,7 +7,7 @@ $primary-blue: hsl(180, 66%, 49%);
   border: none;
   text-transform: capitalize;
   cursor: pointer;
-  touch-action: manipulation;
+  // touch-action: manipulation;
   font-weight: 700;
   text-align: center;
   &:hover,

@@ -1,22 +1,13 @@
 @use '../base/root' as *;
 @use '../abstracts/mixins' as *;
 
+$primary: var(--blue-primary);
+
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  // background-color: coral;
-  @include mq(md) {
-    max-width: 1440px;
-  }
+  width: min(100% - 2.5rem, 90rem);
+  margin-inline: auto;
 }
-section {
-  display: block;
-}
-.container-fluid {
-  margin: 0 auto;
-}
+
 .text-center {
   text-align: center;
 }
@@ -29,21 +20,13 @@ section {
   text-align: left;
 }
 
-.w-40 {
-  max-width: 50%;
-}
-
-@include mq(lg) {
-  .w-40-lg {
-    max-width: 50%;
-  }
-}
 .text-sm {
   font-size: 1.125rem;
 }
 .text-white {
   color: var(--white) !important;
 }
+
 .pt-5 {
   padding-top: 4rem;
 }
@@ -71,7 +54,6 @@ section {
 
 .flex {
   display: flex;
-  // outline: 1px solid olivedrab;
   justify-content: space-between;
 }
 
@@ -84,17 +66,15 @@ section {
 .left-space-sm {
   margin-right: 10px;
 }
+
 .m-auto {
   margin: 0 auto;
 }
-.checkbox {
-  position: relative;
-  display: block;
-  margin-block: 10px;
-}
+
 .primary-color {
-  color: var(--color-gold);
+  color: var($primary);
 }
+
 .text-red {
-  color: red !important;
+  color: var(--red-secondary);
 }
