@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Link from './Link'
+import Input from './Input'
 
 function Shortener(props) {
   // Set React States
   const [components, setComponent] = React.useState([])
   const [errors, setErrors] = React.useState('')
   const [url, setUrl] = React.useState({
-    fullLink:
-      'https://developers.google.com/web/updates/2016/10/addeventlistener-once',
+    fullLink: '',
     shortLink: '',
   })
+  const input = useRef(null)
+  const [isFocused, setFocused] = React.useState(false)
   // create component
   const link = components.map((item, index) => {
     return (
@@ -24,17 +26,21 @@ function Shortener(props) {
   // useEffect for side effects and get data from API
   React.useEffect(() => {
     async function getUrl() {
+      if (url.fullLink === '') return
+      const shorten = `shorten?url=${url?.fullLink}`
       try {
         const res = await fetch(
-          `https://api.shrtco.de/v2/shorten?url=${url.fullLink}`
+          // handle no url error at the beginning
+          `https://api.shrtco.de/v2/${shorten}`
         )
-        if (res.status === 400) {
-          throw new Error('no input entered')
-        }
 
         const data = await res.json()
-        const { result } = data
+        if (data.error_code) {
+          throw Error(data.error)
+        }
 
+        const { result } = data
+        console.log(data)
         // debugger
         setUrl(prevUrl => {
           return {
@@ -47,19 +53,17 @@ function Shortener(props) {
       }
     }
     getUrl()
-  }, [url.fullLink === ''])
+  }, [url.fullLink])
 
   // adding event listener for get url
-  function getShortUrl() {
-    if (url.fullLink === '') {
-      setErrors('No input inserted')
-      return
-    }
-    if (url.shortLink === '') {
+  function getShortUrl(event) {
+    event.preventDefault()
+
+    if (!url.shortLink || url.shortLink === '') {
       setErrors('Invalid link inserted')
       return
     }
-    console.log('Valid link inserted')
+
     setComponent([
       ...components,
       {
@@ -74,12 +78,12 @@ function Shortener(props) {
         shortLink: '',
       }
     })
-    console.log('Short link getted')
   }
 
   // for input changes
   function handleChange(event) {
     const { name, value } = event.target
+    setErrors(event.target.validationMessage)
     setUrl(prevUrl => {
       return {
         ...prevUrl,
@@ -87,24 +91,43 @@ function Shortener(props) {
       }
     })
   }
+
+  // for focus changes
+  function useOutsideAlerter(ref) {
+    React.useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setFocused(true)
+        } else {
+          setFocused(false)
+        }
+      }
+
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [ref])
+  }
+  useOutsideAlerter(input)
   // render component
   return (
     <div className="container">
-      <div className="shortener">
-        <input
-          className="shortener-input"
-          type="text"
-          placeholder="Shorten a link here.."
-          name="fullLink"
-          value={url.fullLink}
-          onChange={handleChange}
-          required={url.requried}
+      <form className="shortener" onSubmit={getShortUrl}>
+        <Input
+          fullLink={url.fullLink}
+          handleChange={handleChange}
+          isFocused={input}
+          focus={isFocused.toString()}
         />
-        <button className="btn btn-primary btn-shortener" onClick={getShortUrl}>
-          Shorten it
-        </button>
+        <button className="btn btn-primary btn-shortener">Shorten it</button>
         {errors && <span className="error-message text-red">{errors}</span>}
-      </div>
+      </form>
       {link}
     </div>
   )
