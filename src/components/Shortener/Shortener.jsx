@@ -5,7 +5,10 @@ import Input from './Input'
 function Shortener(props) {
   // Set React States
   const [components, setComponent] = React.useState([])
-  const [errors, setErrors] = React.useState('')
+  const [errors, setErrors] = React.useState({
+    invalid: '',
+    input: '',
+  })
   const [url, setUrl] = React.useState({
     fullLink: '',
     shortLink: '',
@@ -40,7 +43,7 @@ function Shortener(props) {
         }
 
         const { result } = data
-        console.log(data)
+        console.log(result)
         // debugger
         setUrl(prevUrl => {
           return {
@@ -60,7 +63,13 @@ function Shortener(props) {
     event.preventDefault()
 
     if (!url.shortLink || url.shortLink === '') {
-      setErrors('Invalid link inserted')
+      console.log('Invalid link')
+      setErrors(prevErr => {
+        return {
+          ...prevErr,
+          invalid: 'Invalid link inserted',
+        }
+      })
       return
     }
 
@@ -83,7 +92,13 @@ function Shortener(props) {
   // for input changes
   function handleChange(event) {
     const { name, value } = event.target
-    setErrors(event.target.validationMessage)
+    setErrors(prevErr => {
+      return {
+        ...prevErr,
+        input: event.target.validationMessage,
+      }
+    })
+    // setErrors(event.target.validationMessage)
     setUrl(prevUrl => {
       return {
         ...prevUrl,
@@ -126,7 +141,14 @@ function Shortener(props) {
           focus={isFocused.toString()}
         />
         <button className="btn btn-primary btn-shortener">Shorten it</button>
-        {errors && <span className="error-message text-red">{errors}</span>}
+        {errors && (
+          <>
+            <span className="error-message error-message-hidden text-red">
+              {errors.input}
+            </span>
+            <span className="text-red error-message">{errors.invalid}</span>
+          </>
+        )}
       </form>
       {link}
     </div>

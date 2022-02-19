@@ -43,11 +43,13 @@
   }
 
   .error-message {
-    display: none;
     place-self: start;
     font-style: oblique;
     position: relative;
     outline: none;
+  }
+  .error-message-hidden {
+    display: none;
   }
 }
 
