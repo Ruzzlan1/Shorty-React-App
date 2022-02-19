@@ -8,11 +8,6 @@ import Footer from './components/Footer/Footer'
 import './module.scss'
 
 function App() {
-  // Set React States
-
-  // Button event listener for link
-
-  // console.log(isLink)
   return (
     <div className="hero">
       <Navbar />
