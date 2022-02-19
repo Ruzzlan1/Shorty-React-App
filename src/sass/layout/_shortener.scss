@@ -10,7 +10,8 @@
   grid-gap: 20px;
   border-radius: 9px;
   margin-top: 3rem;
-
+  position: relative;
+  outline: none;
   @include mq(lg) {
     grid-template-columns: 2fr 200px;
     place-items: center;
@@ -18,9 +19,11 @@
       no-repeat;
     background-size: cover;
   }
+
   @include mq(laptop) {
     padding: 3rem 2rem;
   }
+
   &-input {
     padding: 0.75em 1em;
     outline: none;
@@ -30,6 +33,7 @@
     place-self: center;
     @include mq(laptop) {
     }
+
     &::-moz-placeholder {
       /* Firefox 19+ */
       color: var(--ntr-dark-blue);
@@ -37,7 +41,25 @@
       font-size: 1rem;
     }
   }
+
   .error-message {
+    display: none;
     place-self: start;
+    font-style: oblique;
+    position: relative;
+    outline: none;
+  }
+}
+
+.shortener-input:invalid[focused='true'] {
+  border: 2px solid var(--red-secondary);
+}
+
+.shortener-input:invalid[focused='true'] ~ .error-message {
+  display: block;
+}
+.shortener-input:invalid[focused='true'] {
+  &::-moz-placeholder {
+    color: var(--red-secondary);
   }
 }
