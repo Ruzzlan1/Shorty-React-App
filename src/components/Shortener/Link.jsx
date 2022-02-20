@@ -1,4 +1,5 @@
 import React from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 function Link(props) {
   // Set React States
@@ -12,7 +13,14 @@ function Link(props) {
         <a href={props.shortLink} className="short-link">
           {props.shortLink}
         </a>
-        <button className="btn btn-primary btn-link">Copy</button>
+        <CopyToClipboard text={props.shortLink}>
+          <button
+            className="btn btn-primary btn-link"
+            onClick={props.handleClick}
+          >
+            {props.clicked}
+          </button>
+        </CopyToClipboard>
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import Link from './Link'
 import Input from './Input'
+// import { useStateWithDeps } from 'use-state-with-deps'
 
 function Shortener(props) {
   // Set React States
@@ -9,12 +10,20 @@ function Shortener(props) {
     invalid: '',
     input: '',
   })
+
   const [url, setUrl] = React.useState({
     fullLink: '',
     shortLink: '',
   })
+
   const input = useRef(null)
   const [isFocused, setFocused] = React.useState(false)
+
+  const [clicked, setClicked] = React.useState({
+    isCLicked: false,
+    clickText: 'Copy',
+  })
+
   // create component
   const link = components.map((item, index) => {
     return (
@@ -22,9 +31,15 @@ function Shortener(props) {
         key={item.key}
         fullLink={item.fullLink}
         shortLink={item.shortLink}
+        handleClick={handleClick}
+        clicked={clicked.clickText}
       />
     )
   })
+  const clearState = () => {
+    // link[link.length - 1]
+    setClicked({ ...clicked })
+  }
 
   // useEffect for side effects and get data from API
   React.useEffect(() => {
@@ -43,7 +58,7 @@ function Shortener(props) {
         }
 
         const { result } = data
-        console.log(result)
+        // console.log(result)
         // debugger
         setUrl(prevUrl => {
           return {
@@ -61,9 +76,7 @@ function Shortener(props) {
   // adding event listener for get url
   function getShortUrl(event) {
     event.preventDefault()
-
     if (!url.shortLink || url.shortLink === '') {
-      console.log('Invalid link')
       setErrors(prevErr => {
         return {
           ...prevErr,
@@ -71,6 +84,13 @@ function Shortener(props) {
         }
       })
       return
+    } else {
+      setErrors(prevErr => {
+        return {
+          ...prevErr,
+          invalid: '',
+        }
+      })
     }
 
     setComponent([
@@ -80,6 +100,8 @@ function Shortener(props) {
         ...url,
       },
     ])
+
+    // set all links reset again
     setUrl(prevUrl => {
       return {
         ...prevUrl,
@@ -98,7 +120,7 @@ function Shortener(props) {
         input: event.target.validationMessage,
       }
     })
-    // setErrors(event.target.validationMessage)
+
     setUrl(prevUrl => {
       return {
         ...prevUrl,
@@ -130,6 +152,12 @@ function Shortener(props) {
     }, [ref])
   }
   useOutsideAlerter(input)
+
+  // for Link Copy button
+  function handleClick(e) {
+    console.log(e.target)
+  }
+
   // render component
   return (
     <div className="container">
