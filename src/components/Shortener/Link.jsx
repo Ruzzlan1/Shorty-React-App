@@ -2,8 +2,6 @@ import React from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 function Link(props) {
-  // Set React States
-
   return (
     <div className="link">
       <div className="link-container">
@@ -14,11 +12,8 @@ function Link(props) {
           {props.shortLink}
         </a>
         <CopyToClipboard text={props.shortLink}>
-          <button
-            className="btn btn-primary btn-link"
-            onClick={props.handleClick}
-          >
-            {props.clicked}
+          <button className="btn btn-primary btn-link" onClick={props.findId}>
+            {props.clicked ? 'Copied' : 'Copy'}
           </button>
         </CopyToClipboard>
       </div>
@@ -27,3 +22,4 @@ function Link(props) {
 }
 
 export default Link
+// https://youtube.com

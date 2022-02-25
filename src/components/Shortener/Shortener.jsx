@@ -1,44 +1,87 @@
 import React, { useRef } from 'react'
 import Link from './Link'
 import Input from './Input'
-// import { useStateWithDeps } from 'use-state-with-deps'
+import { nanoid } from 'nanoid'
 
 function Shortener(props) {
   // Set React States
-  const [components, setComponent] = React.useState([])
+  const [newLink, setNewLink] = React.useState([])
   const [errors, setErrors] = React.useState({
     invalid: '',
     input: '',
   })
-
   const [url, setUrl] = React.useState({
-    fullLink: '',
+    id: '',
+    fullLink: 'https://www.typescriptlang.org/',
     shortLink: '',
+    clicked: false,
   })
 
   const input = useRef(null)
   const [isFocused, setFocused] = React.useState(false)
 
-  const [clicked, setClicked] = React.useState({
-    isCLicked: false,
-    clickText: 'Copy',
-  })
+  const [clicked, setClicked] = React.useState(false)
 
   // create component
-  const link = components.map((item, index) => {
+  const link = newLink.map((item, index) => {
     return (
       <Link
-        key={item.key}
+        key={item.id}
         fullLink={item.fullLink}
         shortLink={item.shortLink}
-        handleClick={handleClick}
-        clicked={clicked.clickText}
+        item={item}
+        findId={() => findCurrentId(item.id)}
+        clicked={item.clicked}
       />
     )
   })
-  const clearState = () => {
-    // link[link.length - 1]
-    setClicked({ ...clicked })
+
+  function getShortUrl(event) {
+    event.preventDefault()
+    if (!url.shortLink || url.shortLink === '') {
+      setErrors(prevErr => {
+        return {
+          ...prevErr,
+          invalid: 'Invalid link inserted',
+        }
+      })
+      return
+    } else {
+      setErrors(prevErr => {
+        return {
+          ...prevErr,
+          invalid: '',
+        }
+      })
+    }
+
+    // Add new link data
+    setNewLink([
+      ...newLink,
+      {
+        ...url,
+        id: nanoid(),
+      },
+    ])
+
+    // set all links reset again
+    setUrl(prevUrl => {
+      return {
+        ...prevUrl,
+        fullLink: '',
+        shortLink: '',
+      }
+    })
+  }
+
+  function findCurrentId(id) {
+    console.log(id)
+    setNewLink(oldLink =>
+      oldLink.map(link => {
+        if (link.id !== id) return link
+        return { ...link, clicked: true }
+      })
+    )
   }
 
   // useEffect for side effects and get data from API
@@ -74,42 +117,6 @@ function Shortener(props) {
   }, [url.fullLink])
 
   // adding event listener for get url
-  function getShortUrl(event) {
-    event.preventDefault()
-    if (!url.shortLink || url.shortLink === '') {
-      setErrors(prevErr => {
-        return {
-          ...prevErr,
-          invalid: 'Invalid link inserted',
-        }
-      })
-      return
-    } else {
-      setErrors(prevErr => {
-        return {
-          ...prevErr,
-          invalid: '',
-        }
-      })
-    }
-
-    setComponent([
-      ...components,
-      {
-        key: Math.random() * 1000,
-        ...url,
-      },
-    ])
-
-    // set all links reset again
-    setUrl(prevUrl => {
-      return {
-        ...prevUrl,
-        fullLink: '',
-        shortLink: '',
-      }
-    })
-  }
 
   // for input changes
   function handleChange(event) {
@@ -152,11 +159,6 @@ function Shortener(props) {
     }, [ref])
   }
   useOutsideAlerter(input)
-
-  // for Link Copy button
-  function handleClick(e) {
-    console.log(e.target)
-  }
 
   // render component
   return (
