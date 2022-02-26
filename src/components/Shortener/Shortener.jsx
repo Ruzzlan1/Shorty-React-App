@@ -20,8 +20,6 @@ function Shortener(props) {
   const input = useRef(null)
   const [isFocused, setFocused] = React.useState(false)
 
-  const [clicked, setClicked] = React.useState(false)
-
   // create component
   const link = newLink.map((item, index) => {
     return (
@@ -35,44 +33,6 @@ function Shortener(props) {
       />
     )
   })
-
-  function getShortUrl(event) {
-    event.preventDefault()
-    if (!url.shortLink || url.shortLink === '') {
-      setErrors(prevErr => {
-        return {
-          ...prevErr,
-          invalid: 'Invalid link inserted',
-        }
-      })
-      return
-    } else {
-      setErrors(prevErr => {
-        return {
-          ...prevErr,
-          invalid: '',
-        }
-      })
-    }
-
-    // Add new link data
-    setNewLink([
-      ...newLink,
-      {
-        ...url,
-        id: nanoid(),
-      },
-    ])
-
-    // set all links reset again
-    setUrl(prevUrl => {
-      return {
-        ...prevUrl,
-        fullLink: '',
-        shortLink: '',
-      }
-    })
-  }
 
   function findCurrentId(id) {
     console.log(id)
@@ -117,6 +77,43 @@ function Shortener(props) {
   }, [url.fullLink])
 
   // adding event listener for get url
+  function getShortUrl(event) {
+    event.preventDefault()
+    if (!url.shortLink || url.shortLink === '') {
+      setErrors(prevErr => {
+        return {
+          ...prevErr,
+          invalid: 'Invalid link inserted',
+        }
+      })
+      return
+    } else {
+      setErrors(prevErr => {
+        return {
+          ...prevErr,
+          invalid: '',
+        }
+      })
+    }
+
+    // Add new link data
+    setNewLink([
+      ...newLink,
+      {
+        ...url,
+        id: nanoid(),
+      },
+    ])
+
+    // set all links reset again
+    setUrl(prevUrl => {
+      return {
+        ...prevUrl,
+        fullLink: '',
+        shortLink: '',
+      }
+    })
+  }
 
   // for input changes
   function handleChange(event) {
