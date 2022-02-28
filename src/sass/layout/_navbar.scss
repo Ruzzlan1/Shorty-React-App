@@ -1,15 +1,6 @@
 @use '../base/root' as *;
 @use '../abstracts/mixins' as *;
 
-// .header {
-//   font-family: 'Raleway', sans-serif;
-//   position: fixed;
-//   top: 0;
-//   background-color: rgba(0, 0, 0, 0.33);
-//   width: 100%;
-//   z-index: 1000;
-// }
-
 .nav {
   display: flex;
   padding-block: 1.5rem;

@@ -48,10 +48,11 @@ $gray: #ecece457;
     text-decoration: none;
     color: var(--black);
     font-weight: 500;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: '...';
+    max-inline-size: 50ch;
     @include until(phone) {
-      white-space: nowrap;
-      overflow-x: hidden;
-      text-overflow: '...';
     }
 
     &:hover,
