@@ -53,15 +53,15 @@
   }
 }
 
-.shortener-input:invalid[focused='true'] {
-  border: 2px solid var(--red-secondary);
-}
+// .shortener-input:invalid[focused='true'] {
+//   border: 2px solid var(--red-secondary);
+// }
 
 .shortener-input:invalid[focused='true'] ~ .error-message {
   display: block;
 }
-.shortener-input:invalid[focused='true'] {
-  &::-moz-placeholder {
-    color: var(--red-secondary);
-  }
-}
+// .shortener-input:invalid[focused='true'] {
+//   &::-moz-placeholder {
+//     color: var(--red-secondary);
+//   }
+// }
