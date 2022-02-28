@@ -1,8 +1,18 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Link from './Link'
 import Input from './Input'
 import { nanoid } from 'nanoid'
+import { db } from '../../firebase-config'
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+  addDoc,
+  serverTimestamp,
+} from 'firebase/firestore'
 
+// whole Component
 function Shortener(props) {
   // Set React States
   const [newLink, setNewLink] = React.useState([])
@@ -12,13 +22,13 @@ function Shortener(props) {
   })
   const [url, setUrl] = React.useState({
     id: '',
-    fullLink: 'https://www.typescriptlang.org/',
+    fullLink: '',
     shortLink: '',
     clicked: false,
   })
-
-  const input = useRef(null)
   const [isFocused, setFocused] = React.useState(false)
+  // using input ref
+  const input = useRef(null)
 
   // create component
   const link = newLink.map((item, index) => {
@@ -28,13 +38,13 @@ function Shortener(props) {
         fullLink={item.fullLink}
         shortLink={item.shortLink}
         item={item}
-        findId={() => findCurrentId(item.id)}
+        findId={() => findIdAndChangeCopyText(item.id)}
         clicked={item.clicked}
       />
     )
   })
 
-  function findCurrentId(id) {
+  function findIdAndChangeCopyText(id) {
     console.log(id)
     setNewLink(oldLink =>
       oldLink.map(link => {
@@ -76,6 +86,16 @@ function Shortener(props) {
     getUrl()
   }, [url.fullLink])
 
+  // Add firestore database
+  const q = query(collection(db, 'links'), orderBy('timestamp', 'desc'))
+  // console.log(q)
+  useEffect(() => {
+    onSnapshot(q, snapshot => {
+      setNewLink(snapshot.docs.map(doc => ({ ...doc.data() })))
+      console.log(snapshot.docs.map(doc => ({ ...doc.data() })))
+    })
+  }, [])
+
   // adding event listener for get url
   function getShortUrl(event) {
     event.preventDefault()
@@ -96,15 +116,6 @@ function Shortener(props) {
       })
     }
 
-    // Add new link data
-    setNewLink([
-      ...newLink,
-      {
-        ...url,
-        id: nanoid(),
-      },
-    ])
-
     // set all links reset again
     setUrl(prevUrl => {
       return {
@@ -112,6 +123,13 @@ function Shortener(props) {
         fullLink: '',
         shortLink: '',
       }
+    })
+
+    // add a new link component to firestore db
+    addDoc(collection(db, 'links'), {
+      ...url,
+      id: nanoid(),
+      timestamp: serverTimestamp(),
     })
   }
 
