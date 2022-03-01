@@ -45,7 +45,6 @@ function Shortener(props) {
   })
 
   function findIdAndChangeCopyText(id) {
-    console.log(id)
     setNewLink(oldLink =>
       oldLink.map(link => {
         if (link.id !== id) return link
@@ -88,11 +87,9 @@ function Shortener(props) {
 
   // Add firestore database
   const q = query(collection(db, 'links'), orderBy('timestamp', 'desc'))
-  // console.log(q)
   useEffect(() => {
     onSnapshot(q, snapshot => {
       setNewLink(snapshot.docs.map(doc => ({ ...doc.data() })))
-      console.log(snapshot.docs.map(doc => ({ ...doc.data() })))
     })
   }, [])
 
