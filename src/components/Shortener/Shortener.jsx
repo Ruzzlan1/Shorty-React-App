@@ -150,7 +150,7 @@ function Shortener(props) {
 
   // for focus changes
   function useOutsideAlerter(ref) {
-    React.useEffect(() => {
+    useEffect(() => {
       /**
        * Alert if clicked on outside of element
        */
@@ -182,7 +182,12 @@ function Shortener(props) {
           isFocused={input}
           focus={isFocused.toString()}
         />
-        <button className="btn btn-primary btn-shortener">Shorten it</button>
+        <button
+          className="btn btn-primary btn-shortener"
+          disabled={url.fullLink === ''}
+        >
+          Shorten it
+        </button>
         {errors && (
           <>
             <span className="error-message error-message-hidden text-red">
