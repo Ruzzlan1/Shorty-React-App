@@ -5,15 +5,15 @@ function Link(props) {
   return (
     <div className="link">
       <div className="link-container">
-        <a href={props.fullLink} className="full-link">
-          {props.fullLink}
+        <a href={props.item.fullLink} className="full-link">
+          {props.item.fullLink}
         </a>
-        <a href={props.shortLink} className="short-link">
-          {props.shortLink}
+        <a href={props.item.shortLink} className="short-link">
+          {props.item.shortLink}
         </a>
-        <CopyToClipboard text={props.shortLink}>
+        <CopyToClipboard text={props.item.shortLink}>
           <button className="btn btn-primary btn-link" onClick={props.findId}>
-            {props.clicked ? 'Copied' : 'Copy'}
+            {props.item.clicked ? 'Copied' : 'Copy'}
           </button>
         </CopyToClipboard>
       </div>

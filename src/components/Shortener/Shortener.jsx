@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import Link from './Link'
 import Input from './Input'
 import { nanoid } from 'nanoid'
+import { useOutsideAlerter, findId } from '../../utils/helpers'
+import { MainContext } from '../../context'
 import { db } from '../../firebase-config'
 import {
   collection,
@@ -30,28 +32,22 @@ function Shortener(props) {
   // using input ref
   const input = useRef(null)
 
+  const data = {
+    isFocused,
+    setFocused,
+  }
   // create component
+
   const link = newLink.map((item, index) => {
     return (
       <Link
         key={item.id}
-        fullLink={item.fullLink}
-        shortLink={item.shortLink}
         item={item}
-        findId={() => findIdAndChangeCopyText(item.id)}
-        clicked={item.clicked}
+        findId={() => findId(item.id, setNewLink)}
+        // clicked={item.clicked}
       />
     )
   })
-
-  function findIdAndChangeCopyText(id) {
-    setNewLink(oldLink =>
-      oldLink.map(link => {
-        if (link.id !== id) return link
-        return { ...link, clicked: true }
-      })
-    )
-  }
 
   // useEffect for side effects and get data from API
   React.useEffect(() => {
@@ -70,7 +66,6 @@ function Shortener(props) {
         }
 
         const { result } = data
-        // console.log(result)
         // debugger
         setUrl(prevUrl => {
           return {
@@ -149,56 +144,37 @@ function Shortener(props) {
   }
 
   // for focus changes
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setFocused(true)
-        } else {
-          setFocused(false)
-        }
-      }
-
-      // Bind the event listener
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [ref])
-  }
-  useOutsideAlerter(input)
+  useOutsideAlerter(input, setFocused)
 
   // render component
   return (
-    <div className="container">
-      <form className="shortener" onSubmit={getShortUrl}>
-        <Input
-          fullLink={url.fullLink}
-          handleChange={handleChange}
-          isFocused={input}
-          focus={isFocused.toString()}
-        />
-        <button
-          className="btn btn-primary btn-shortener"
-          disabled={url.fullLink === ''}
-        >
-          Shorten it
-        </button>
-        {errors && (
-          <>
-            <span className="error-message error-message-hidden text-red">
-              {errors.input}
-            </span>
-            <span className="text-red error-message">{errors.invalid}</span>
-          </>
-        )}
-      </form>
-      {link}
-    </div>
+    <MainContext.Provider value={data}>
+      <div className="container">
+        <form className="shortener" onSubmit={getShortUrl}>
+          <Input
+            fullLink={url.fullLink}
+            handleChange={handleChange}
+            isFocused={input}
+            focus={isFocused.toString()}
+          />
+          <button
+            className="btn btn-primary btn-shortener"
+            disabled={url.fullLink === ''}
+          >
+            Shorten it
+          </button>
+          {errors && (
+            <>
+              <span className="error-message error-message-hidden text-red">
+                {errors.input}
+              </span>
+              <span className="text-red error-message">{errors.invalid}</span>
+            </>
+          )}
+        </form>
+        {link}
+      </div>
+    </MainContext.Provider>
   )
 }
 
