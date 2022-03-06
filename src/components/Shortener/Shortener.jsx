@@ -22,12 +22,14 @@ function Shortener(props) {
     invalid: '',
     input: '',
   })
+
   const [url, setUrl] = React.useState({
     id: '',
     fullLink: '',
     shortLink: '',
     clicked: false,
   })
+
   const [isFocused, setFocused] = React.useState(false)
   // using input ref
   const input = useRef(null)
