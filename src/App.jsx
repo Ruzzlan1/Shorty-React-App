@@ -5,7 +5,7 @@ import Shortener from './components/Shortener/Shortener'
 import About from './components/About /About'
 import Banner from './components/Banner'
 import Footer from './components/Footer/Footer'
-import './module.scss'
+import './sass/module.scss'
 
 function App() {
   return (
