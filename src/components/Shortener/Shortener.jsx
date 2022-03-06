@@ -35,7 +35,9 @@ function Shortener(props) {
   const data = {
     isFocused,
     setFocused,
+    ...url,
   }
+  console.log(data)
   // create component
 
   const link = newLink.map((item, index) => {
@@ -44,7 +46,6 @@ function Shortener(props) {
         key={item.id}
         item={item}
         findId={() => findId(item.id, setNewLink)}
-        // clicked={item.clicked}
       />
     )
   })
@@ -151,12 +152,7 @@ function Shortener(props) {
     <MainContext.Provider value={data}>
       <div className="container">
         <form className="shortener" onSubmit={getShortUrl}>
-          <Input
-            fullLink={url.fullLink}
-            handleChange={handleChange}
-            isFocused={input}
-            focus={isFocused.toString()}
-          />
+          <Input handleChange={handleChange} isFocused={input} />
           <button
             className="btn btn-primary btn-shortener"
             disabled={url.fullLink === ''}
