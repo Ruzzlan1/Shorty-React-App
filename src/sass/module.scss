@@ -1,0 +1,18 @@
+// import standart styles
+@use 'base/base';
+@use 'base/typography';
+@use 'base/reset';
+@use 'abstracts/grid';
+// import components
+@use 'components/buttons';
+@use 'components/link';
+@use 'components/banner';
+@use 'components/card';
+// input layouts
+@use 'layout/navbar';
+@use 'layout/intro';
+@use 'layout/shortener';
+@use 'layout/about';
+@use 'layout/footer';
+//import utility classes
+@use 'utilities/utilities';
