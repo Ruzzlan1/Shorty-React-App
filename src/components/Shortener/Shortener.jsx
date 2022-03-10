@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from './Link'
 import Input from './Input'
 import { nanoid } from 'nanoid'
-import { useOutsideAlerter, findId } from '../../utils/helpers'
+import { useOutsideAlerter, findId, getJSON } from '../../utils/helpers'
+import { API_URL } from '../../utils/config'
 import { MainContext } from '../../context'
 import { db } from '../../firebase-config'
 import {
@@ -17,20 +18,20 @@ import {
 // whole Component
 function Shortener(props) {
   // Set React States
-  const [newLink, setNewLink] = React.useState([])
-  const [errors, setErrors] = React.useState({
+  const [newLink, setNewLink] = useState([])
+  const [errors, setErrors] = useState({
     invalid: '',
     input: '',
   })
 
-  const [url, setUrl] = React.useState({
+  const [url, setUrl] = useState({
     id: '',
     fullLink: '',
     shortLink: '',
     clicked: false,
   })
 
-  const [isFocused, setFocused] = React.useState(false)
+  const [isFocused, setFocused] = useState(false)
   // using input ref
   const input = useRef(null)
 
@@ -39,9 +40,8 @@ function Shortener(props) {
     setFocused,
     ...url,
   }
-  console.log(data)
-  // create component
 
+  // create component
   const link = newLink.map((item, index) => {
     return (
       <Link
@@ -53,17 +53,13 @@ function Shortener(props) {
   })
 
   // useEffect for side effects and get data from API
-  React.useEffect(() => {
+  useEffect(() => {
     async function getUrl() {
       if (url.fullLink === '') return
       const shorten = `shorten?url=${url?.fullLink}`
       try {
-        const res = await fetch(
-          // handle no url error at the beginning
-          `https://api.shrtco.de/v2/${shorten}`
-        )
+        const data = await getJSON(`${API_URL}${shorten}`)
 
-        const data = await res.json()
         if (data.error_code) {
           throw Error(data.error)
         }
@@ -94,14 +90,14 @@ function Shortener(props) {
   // adding event listener for get url
   function getShortUrl(event) {
     event.preventDefault()
-    if (!url.shortLink || url.shortLink === '') {
+    if (!url.shortLink) {
       setErrors(prevErr => {
         return {
           ...prevErr,
           invalid: 'Invalid link inserted',
         }
       })
-      return
+      // return
     } else {
       setErrors(prevErr => {
         return {
