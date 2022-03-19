@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { TIMEOUT_SEC } from './config'
+
 export const useOutsideAlerter = (ref, setter) => {
   useEffect(() => {
     //Alert if clicked on outside of element
@@ -36,6 +37,7 @@ const timeout = function (s) {
     }, s * 1000)
   })
 }
+
 export const getJSON = async url => {
   try {
     const fetchPromise = await fetch(url)

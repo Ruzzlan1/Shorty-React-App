@@ -90,6 +90,13 @@ function Shortener(props) {
   // adding event listener for get url
   function getShortUrl(event) {
     event.preventDefault()
+    // add a new link component to firestore db
+    addDoc(collection(db, 'links'), {
+      ...url,
+      id: nanoid(),
+      timestamp: serverTimestamp(),
+    })
+
     if (!url.shortLink) {
       setErrors(prevErr => {
         return {
@@ -98,14 +105,14 @@ function Shortener(props) {
         }
       })
       // return
-    } else {
-      setErrors(prevErr => {
-        return {
-          ...prevErr,
-          invalid: '',
-        }
-      })
     }
+
+    setErrors(prevErr => {
+      return {
+        ...prevErr,
+        invalid: '',
+      }
+    })
 
     // set all links reset again
     setUrl(prevUrl => {
@@ -114,13 +121,6 @@ function Shortener(props) {
         fullLink: '',
         shortLink: '',
       }
-    })
-
-    // add a new link component to firestore db
-    addDoc(collection(db, 'links'), {
-      ...url,
-      id: nanoid(),
-      timestamp: serverTimestamp(),
     })
   }
 
