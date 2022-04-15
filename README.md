@@ -2,7 +2,7 @@
 A URL shortener single page app,working with web api called [shrtcode API](https://app.shrtco.de/)
 
 ### Setting up Dev
- That's what you need when you want to take a look project.
+ That's what you need when you want to take a look at project.
 
 ```shell
 git clone https://github.com/Ruzzlan1/Shorty-React-App
